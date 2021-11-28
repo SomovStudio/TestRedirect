@@ -99,6 +99,37 @@ namespace TestRedirect
             }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            richTextBox2.Clear();
+            richTextBox3.Clear();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (processRun == true)
+            {
+                MessageBox.Show("Процесс уже запущен");
+                return;
+            }
+
+            thread = new Thread(TestUrl2);
+            thread.Start();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TestEnd();
+            try
+            {
+                thread.Abort();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
         private void TestUrl()
         {
             processRun = true;
@@ -154,7 +185,78 @@ namespace TestRedirect
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.ToString());
+                //MessageBox.Show(error.ToString());
+                MessageBox.Show(error.Message.ToString());
+            }
+            finally
+            {
+                TestEnd();
+                thread.Abort();
+            }
+
+            TestEnd();
+            thread.Abort();
+        }
+
+        private void TestUrl2()
+        {
+            processRun = true;
+            try
+            {
+                listView1.Items.Clear();
+                ListViewItem item;
+                ListViewItem.ListViewSubItem subitem;
+
+                HttpClient client;
+                HttpResponseMessage response;
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.AllowAutoRedirect = false;
+
+                int amount = richTextBox2.Lines.Length;
+                for (int i = 0; i < amount; i++)
+                {
+                    string originalUrl = richTextBox2.Lines.GetValue(i).ToString();
+                    string targetUrl = richTextBox3.Lines.GetValue(i).ToString();
+
+
+                    client = new HttpClient(handler);
+                    if (checkBox1.Checked == false) client.DefaultRequestHeaders.UserAgent.ParseAdd(textBox1.Text);
+                    client.BaseAddress = new Uri(originalUrl);
+                    response = client.GetAsync(originalUrl).Result;
+                    int statusCode = (int)response.StatusCode;
+
+                    string redirectedUrl = "";
+                    HttpResponseHeaders headers = response.Headers;
+                    if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
+
+                    item = new ListViewItem();
+                    subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = originalUrl; //subitem.Text = response.RequestMessage.RequestUri.ToString();
+                    item.SubItems.Add(subitem);
+                    subitem = new ListViewItem.ListViewSubItem();
+                    if (statusCode == 301) subitem.Text = statusCode.ToString() + " - редирект";
+                    else subitem.Text = statusCode.ToString();
+                    item.SubItems.Add(subitem);
+                    subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = redirectedUrl;
+                    item.SubItems.Add(subitem);
+
+                    subitem = new ListViewItem.ListViewSubItem();
+                    if (redirectedUrl == targetUrl && statusCode == 301) subitem.Text = "PASSED";
+                    else subitem.Text = "FAILED";
+                    item.SubItems.Add(subitem);
+
+
+                    if (redirectedUrl == targetUrl && statusCode == 301) item.ImageIndex = 0;
+                    else item.ImageIndex = 1;
+                    listView1.Items.Add(item);
+                }
+
+            }
+            catch (Exception error)
+            {
+                //MessageBox.Show(error.ToString());
+                MessageBox.Show(error.Message.ToString());
             }
             finally
             {
