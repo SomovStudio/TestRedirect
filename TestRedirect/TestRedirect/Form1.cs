@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.IO;
 
 // Редирект - узнать URL https://gist.github.com/Delaire/3f1283dc6365d705dfd6ba24498d4993
 
@@ -48,7 +49,7 @@ namespace TestRedirect
         {
             if (processRun == true)
             {
-                MessageBox.Show("Процесс уже запущен");
+                MessageBox.Show("Процесс уже запущен", "Сообщение");
                 return;
             }
             richTextBox4.Clear();
@@ -109,7 +110,7 @@ namespace TestRedirect
         {
             if (processRun == true)
             {
-                MessageBox.Show("Процесс уже запущен");
+                MessageBox.Show("Процесс уже запущен", "Сообщение");
                 return;
             }
             richTextBox4.Clear();
@@ -126,8 +127,18 @@ namespace TestRedirect
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show(error.Message, "Ошибка");
             }
+        }
+
+        private void сохранитьОтчетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveReport();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            saveReport();
         }
 
         private void TestUrl()
@@ -207,7 +218,7 @@ namespace TestRedirect
             catch (Exception error)
             {
                 //MessageBox.Show(error.ToString());
-                MessageBox.Show(error.Message.ToString());
+                MessageBox.Show(error.Message.ToString(), "Ошибка");
             }
             finally
             {
@@ -298,7 +309,7 @@ namespace TestRedirect
             catch (Exception error)
             {
                 //MessageBox.Show(error.ToString());
-                MessageBox.Show(error.Message.ToString());
+                MessageBox.Show(error.Message.ToString(), "Ошибка");
             }
             finally
             {
@@ -312,8 +323,18 @@ namespace TestRedirect
 
         private void TestEnd()
         {
-            MessageBox.Show("Процесс проверки - завершен!");
+            MessageBox.Show("Процесс проверки - завершен!", "Сообщение");
             processRun = false;
+        }
+
+        private void saveReport()
+        {
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox4.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+                if(File.Exists(saveFileDialog1.FileName)) MessageBox.Show("Файл успешно сохранён", "Сообщение");
+                else MessageBox.Show("Неудалось сохранить файл", "Ошибка");
+            }
         }
 
         
