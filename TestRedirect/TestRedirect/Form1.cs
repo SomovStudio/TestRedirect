@@ -51,7 +51,7 @@ namespace TestRedirect
                 MessageBox.Show("Процесс уже запущен");
                 return;
             }
-
+            richTextBox4.Clear();
             thread = new Thread(TestUrl);
             thread.Start();
         }
@@ -112,7 +112,7 @@ namespace TestRedirect
                 MessageBox.Show("Процесс уже запущен");
                 return;
             }
-
+            richTextBox4.Clear();
             thread = new Thread(TestUrl2);
             thread.Start();
         }
@@ -170,16 +170,37 @@ namespace TestRedirect
                     subitem = new ListViewItem.ListViewSubItem();
                     subitem.Text = redirectedUrl;
                     item.SubItems.Add(subitem);
+
+                    bool test = false;
+                    if (checkBox2.Checked == true && checkBox3.Checked == true)
+                    {
+                        if (redirectedUrl != "" && (statusCode == 301 || statusCode == 302)) test = true;
+                    }
+                    else if (checkBox2.Checked == true && checkBox3.Checked == false)
+                    {
+                        if (redirectedUrl != "" && statusCode == 301) test = true;
+                    }
+                    else if (checkBox2.Checked == false && checkBox3.Checked == true)
+                    {
+                        if (redirectedUrl != "" && statusCode == 302) test = true;
+                    }
+                    else if (checkBox2.Checked == false && checkBox3.Checked == false)
+                    {
+                        if (redirectedUrl != "") test = true;
+                    }
                     
                     subitem = new ListViewItem.ListViewSubItem();
-                    if (redirectedUrl != "" && statusCode == 301) subitem.Text = "PASSED";
+                    if (test == true) subitem.Text = "PASSED";
                     else subitem.Text = "FAILED";
                     item.SubItems.Add(subitem);
 
 
-                    if (redirectedUrl != "" && statusCode == 301) item.ImageIndex = 0;
+                    if (test == true) item.ImageIndex = 0;
                     else item.ImageIndex = 1;
                     listView1.Items.Add(item);
+
+                    if(test == true) richTextBox4.Text = richTextBox4.Text + "PASSED - cтатус [" + statusCode + "] - откуда [" + url + "] куда [" + redirectedUrl + "]" + Environment.NewLine;
+                    else richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [" + statusCode + "] - откуда [" + url + "] куда [" + redirectedUrl + "]" + Environment.NewLine;
                 }
 
             }
@@ -241,15 +262,36 @@ namespace TestRedirect
                     subitem.Text = redirectedUrl;
                     item.SubItems.Add(subitem);
 
+                    bool test = false;
+                    if (checkBox2.Checked == true && checkBox3.Checked == true)
+                    {
+                        if (redirectedUrl == targetUrl && (statusCode == 301 || statusCode == 302)) test = true;
+                    }
+                    else if (checkBox2.Checked == true && checkBox3.Checked == false)
+                    {
+                        if (redirectedUrl == targetUrl && statusCode == 301) test = true;
+                    }
+                    else if (checkBox2.Checked == false && checkBox3.Checked == true)
+                    {
+                        if (redirectedUrl == targetUrl && statusCode == 302) test = true;
+                    }
+                    else if (checkBox2.Checked == false && checkBox3.Checked == false)
+                    {
+                        if (redirectedUrl == targetUrl) test = true;
+                    }
+
                     subitem = new ListViewItem.ListViewSubItem();
-                    if (redirectedUrl == targetUrl && statusCode == 301) subitem.Text = "PASSED";
+                    if (test) subitem.Text = "PASSED";
                     else subitem.Text = "FAILED";
                     item.SubItems.Add(subitem);
 
 
-                    if (redirectedUrl == targetUrl && statusCode == 301) item.ImageIndex = 0;
+                    if (test) item.ImageIndex = 0;
                     else item.ImageIndex = 1;
                     listView1.Items.Add(item);
+
+                    if (test == true) richTextBox4.Text = richTextBox4.Text + "PASSED - cтатус [" + statusCode + "] - откуда [" + originalUrl + "] куда [" + targetUrl + "] по факту [" + redirectedUrl + "]" + Environment.NewLine;
+                    else richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [" + statusCode + "] - откуда [" + originalUrl + "] куда [" + targetUrl + "] по факту [" + redirectedUrl + "]" + Environment.NewLine;
                 }
 
             }
