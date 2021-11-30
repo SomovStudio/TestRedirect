@@ -93,6 +93,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -171,6 +172,7 @@
             this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
             this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.закрытьToolStripMenuItem.Text = "Закрыть";
+            this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.закрытьToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -184,8 +186,9 @@
             // 
             this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -216,6 +219,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "О программе";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // splitContainer1
             // 
@@ -240,8 +244,8 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -350,7 +354,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(774, 205);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.Text = "";
             this.richTextBox1.WordWrap = false;
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             // 
@@ -484,7 +488,7 @@
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(382, 202);
             this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
+            this.richTextBox2.Text = "";
             this.richTextBox2.WordWrap = false;
             // 
             // panel11
@@ -540,7 +544,7 @@
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(382, 202);
             this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = resources.GetString("richTextBox3.Text");
+            this.richTextBox3.Text = "";
             this.richTextBox3.WordWrap = false;
             // 
             // tabPage3
@@ -559,11 +563,12 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.checkBox3);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Location = new System.Drawing.Point(6, 61);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(762, 70);
+            this.groupBox2.Size = new System.Drawing.Size(762, 81);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Допустимые ответы сервера:";
@@ -802,6 +807,17 @@
             // 
             this.saveFileDialog1.Filter = "(*.txt)|*.txt|Все файлы (*.*)|*.*";
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(0, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(482, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "(если ничего не выбрано в таком случае принимается любой ответ сервера как коррек" +
+    "тный)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -919,6 +935,7 @@
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label6;
     }
 }
 

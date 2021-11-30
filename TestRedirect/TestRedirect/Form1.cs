@@ -141,6 +141,11 @@ namespace TestRedirect
             saveReport();
         }
 
+        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void TestUrl()
         {
             processRun = true;
@@ -230,6 +235,15 @@ namespace TestRedirect
             thread.Abort();
         }
 
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showAbout();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            showAbout();
+        }
         private void TestUrl2()
         {
             processRun = true;
@@ -335,6 +349,12 @@ namespace TestRedirect
                 if(File.Exists(saveFileDialog1.FileName)) MessageBox.Show("Файл успешно сохранён", "Сообщение");
                 else MessageBox.Show("Неудалось сохранить файл", "Ошибка");
             }
+        }
+
+        private void showAbout()
+        {
+            Form2 about = new Form2();
+            about.ShowDialog();
         }
 
         
