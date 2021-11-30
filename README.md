@@ -1,2 +1,0 @@
-# TestRedirect
-Test redirect
