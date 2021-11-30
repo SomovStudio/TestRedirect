@@ -87,6 +87,42 @@ namespace TestRedirect
             }
         }
 
+        private void richTextBox2_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@e.LinkText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        private void richTextBox3_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@e.LinkText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        private void richTextBox4_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@e.LinkText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -173,7 +209,15 @@ namespace TestRedirect
 
                     string redirectedUrl = "";
                     HttpResponseHeaders headers = response.Headers;
-                    if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
+                    if (headers.Location.IsAbsoluteUri)
+                    {
+                        if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
+                    }
+                    else
+                    {
+                        if (headers != null && headers.Location != null) redirectedUrl = headers.Location.OriginalString;
+                    }
+                    
 
                     item = new ListViewItem();
                     subitem = new ListViewItem.ListViewSubItem();
@@ -222,8 +266,8 @@ namespace TestRedirect
             }
             catch (Exception error)
             {
-                //MessageBox.Show(error.ToString());
-                MessageBox.Show(error.Message.ToString(), "Ошибка");
+                MessageBox.Show(error.ToString());
+                //MessageBox.Show(error.Message.ToString(), "Ошибка");
             }
             finally
             {
