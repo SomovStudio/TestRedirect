@@ -177,6 +177,16 @@ namespace TestRedirect
             saveReport();
         }
 
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showAbout();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            showAbout();
+        }
+
         private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -278,16 +288,8 @@ namespace TestRedirect
             TestEnd();
             thread.Abort();
         }
-
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showAbout();
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            showAbout();
-        }
+        
+        
         private void TestUrl2()
         {
             processRun = true;
@@ -317,7 +319,14 @@ namespace TestRedirect
 
                     string redirectedUrl = "";
                     HttpResponseHeaders headers = response.Headers;
-                    if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
+                    if (headers.Location.IsAbsoluteUri)
+                    {
+                        if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
+                    }
+                    else
+                    {
+                        if (headers != null && headers.Location != null) redirectedUrl = headers.Location.OriginalString;
+                    }
 
                     item = new ListViewItem();
                     subitem = new ListViewItem.ListViewSubItem();
@@ -401,6 +410,60 @@ namespace TestRedirect
             about.ShowDialog();
         }
 
-        
+        private void определятьСсылкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.DetectUrls)
+            {
+                richTextBox1.DetectUrls = false;
+                определятьСсылкиToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                richTextBox1.DetectUrls = true;
+                определятьСсылкиToolStripMenuItem.Checked = true;
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (richTextBox2.DetectUrls)
+            {
+                richTextBox2.DetectUrls = false;
+                toolStripMenuItem1.Checked = false;
+            }
+            else
+            {
+                richTextBox2.DetectUrls = true;
+                toolStripMenuItem1.Checked = true;
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (richTextBox3.DetectUrls)
+            {
+                richTextBox3.DetectUrls = false;
+                toolStripMenuItem2.Checked = false;
+            }
+            else
+            {
+                richTextBox3.DetectUrls = true;
+                toolStripMenuItem2.Checked = true;
+            }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (richTextBox4.DetectUrls)
+            {
+                richTextBox4.DetectUrls = false;
+                toolStripMenuItem3.Checked = false;
+            }
+            else
+            {
+                richTextBox4.DetectUrls = true;
+                toolStripMenuItem3.Checked = true;
+            }
+        }
     }
 }
