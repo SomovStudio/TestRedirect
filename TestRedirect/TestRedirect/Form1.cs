@@ -205,7 +205,7 @@ namespace TestRedirect
                 HttpResponseMessage response;
                 HttpClientHandler handler = new HttpClientHandler();
                 handler.AllowAutoRedirect = false;
-
+                
                 int amount = richTextBox1.Lines.Length;
                 for (int i = 0; i < amount; i++)
                 {
@@ -219,6 +219,28 @@ namespace TestRedirect
 
                     string redirectedUrl = "";
                     HttpResponseHeaders headers = response.Headers;
+                    if (headers.Location == null)
+                    {
+                        item = new ListViewItem();
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = url;
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "ошибка";
+                        statusCode.ToString();
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "произошла ошибка при чтении страницы";
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "FAILED";
+                        item.SubItems.Add(subitem);
+                        item.ImageIndex = 1;
+                        listView1.Items.Add(item);
+                        richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + url + Environment.NewLine;
+                        continue;
+                    }
+                        
                     if (headers.Location.IsAbsoluteUri)
                     {
                         if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;
@@ -227,6 +249,7 @@ namespace TestRedirect
                     {
                         if (headers != null && headers.Location != null) redirectedUrl = headers.Location.OriginalString;
                     }
+                    
                     
 
                     item = new ListViewItem();
@@ -319,6 +342,28 @@ namespace TestRedirect
 
                     string redirectedUrl = "";
                     HttpResponseHeaders headers = response.Headers;
+                    if (headers.Location == null)
+                    {
+                        item = new ListViewItem();
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = originalUrl;
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "ошибка";
+                        statusCode.ToString();
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "произошла ошибка при чтении страницы";
+                        item.SubItems.Add(subitem);
+                        subitem = new ListViewItem.ListViewSubItem();
+                        subitem.Text = "FAILED";
+                        item.SubItems.Add(subitem);
+                        item.ImageIndex = 1;
+                        listView1.Items.Add(item);
+                        richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + originalUrl + Environment.NewLine;
+                        continue;
+                    }
+
                     if (headers.Location.IsAbsoluteUri)
                     {
                         if (headers != null && headers.Location != null) redirectedUrl = headers.Location.AbsoluteUri;

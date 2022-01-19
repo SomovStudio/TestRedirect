@@ -134,7 +134,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(218, 13);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Дата последнего обновления: 30.11.2021";
+            this.label7.Text = "Дата последнего обновления: 19.01.2022";
             // 
             // label6
             // 
@@ -143,7 +143,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Версия: 1.0.0";
+            this.label6.Text = "Версия: 1.1.0";
             // 
             // linkLabel1
             // 
