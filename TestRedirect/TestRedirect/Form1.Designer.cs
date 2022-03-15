@@ -48,6 +48,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -102,7 +103,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -325,6 +325,17 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(776, 18);
             this.panel4.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(426, 1);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(344, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Внимание! 302 ответ может быть если в конце ссылок не стоит / ";
             // 
             // panel5
             // 
@@ -885,7 +896,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Редирект (куда)";
-            this.columnHeader4.Width = 250;
+            this.columnHeader4.Width = 290;
             // 
             // columnHeader5
             // 
@@ -903,17 +914,6 @@
             // 
             this.saveFileDialog1.Filter = "(*.txt)|*.txt|Все файлы (*.*)|*.*";
             // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(426, 1);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(344, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Внимание! 302 ответ может быть если в конце ссылок не стоит / ";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -926,7 +926,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "TestRedirect v 1.1";
+            this.Text = "TestRedirect v 1.1.2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

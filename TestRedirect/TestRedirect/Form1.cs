@@ -194,6 +194,10 @@ namespace TestRedirect
 
         private void TestUrl()
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
             processRun = true;
             try
             {
@@ -221,23 +225,47 @@ namespace TestRedirect
                     HttpResponseHeaders headers = response.Headers;
                     if (headers.Location == null)
                     {
-                        item = new ListViewItem();
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = url;
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "ошибка";
-                        statusCode.ToString();
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "произошла ошибка при чтении страницы";
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "FAILED";
-                        item.SubItems.Add(subitem);
-                        item.ImageIndex = 1;
-                        listView1.Items.Add(item);
-                        richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + url + Environment.NewLine;
+                        if((int)response.StatusCode == 200)
+                        {
+                            item = new ListViewItem();
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = url;
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "200";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "редирект не сработал";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) subitem.Text = "PASSED";
+                            else subitem.Text = "FAILED";
+                            item.SubItems.Add(subitem);
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) item.ImageIndex = 0;
+                            else item.ImageIndex = 1;
+                            listView1.Items.Add(item);
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) richTextBox4.Text = richTextBox4.Text + "PASSED - cтатус [200] - редирект не сработал " + url + Environment.NewLine;
+                            else richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [200] - редирект не сработал " + url + Environment.NewLine;
+                        }
+                        else
+                        {
+                            item = new ListViewItem();
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = url;
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "ошибка";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "произошла ошибка при чтении страницы (статус: " + ((int)response.StatusCode).ToString() + ")";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "FAILED";
+                            item.SubItems.Add(subitem);
+                            item.ImageIndex = 1;
+                            listView1.Items.Add(item);
+                            richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + url + Environment.NewLine;
+                        }
                         continue;
                     }
                         
@@ -249,7 +277,6 @@ namespace TestRedirect
                     {
                         if (headers != null && headers.Location != null) redirectedUrl = headers.Location.OriginalString;
                     }
-                    
                     
 
                     item = new ListViewItem();
@@ -315,6 +342,10 @@ namespace TestRedirect
         
         private void TestUrl2()
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
             processRun = true;
             try
             {
@@ -344,23 +375,48 @@ namespace TestRedirect
                     HttpResponseHeaders headers = response.Headers;
                     if (headers.Location == null)
                     {
-                        item = new ListViewItem();
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = originalUrl;
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "ошибка";
-                        statusCode.ToString();
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "произошла ошибка при чтении страницы";
-                        item.SubItems.Add(subitem);
-                        subitem = new ListViewItem.ListViewSubItem();
-                        subitem.Text = "FAILED";
-                        item.SubItems.Add(subitem);
-                        item.ImageIndex = 1;
-                        listView1.Items.Add(item);
-                        richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + originalUrl + Environment.NewLine;
+                        if ((int)response.StatusCode == 200)
+                        {
+                            item = new ListViewItem();
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = originalUrl;
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "200";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "редирект не сработал";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) subitem.Text = "PASSED";
+                            else subitem.Text = "FAILED";
+                            item.SubItems.Add(subitem);
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) item.ImageIndex = 0;
+                            else item.ImageIndex = 1;
+                            listView1.Items.Add(item);
+                            if (checkBox2.Checked == false && checkBox3.Checked == false) richTextBox4.Text = richTextBox4.Text + "PASSED - cтатус [200] - редирект не сработал " + originalUrl + Environment.NewLine;
+                            else richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [200] - редирект не сработал " + originalUrl + Environment.NewLine;
+                        }
+                        else
+                        {
+                            item = new ListViewItem();
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = originalUrl;
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "ошибка";
+                            statusCode.ToString();
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "произошла ошибка при чтении страницы (статус: " + ((int)response.StatusCode).ToString() + ")";
+                            item.SubItems.Add(subitem);
+                            subitem = new ListViewItem.ListViewSubItem();
+                            subitem.Text = "FAILED";
+                            item.SubItems.Add(subitem);
+                            item.ImageIndex = 1;
+                            listView1.Items.Add(item);
+                            richTextBox4.Text = richTextBox4.Text + "FAILED - cтатус [ошибка] - ошибка на странице " + originalUrl + Environment.NewLine;
+                        }
                         continue;
                     }
 
