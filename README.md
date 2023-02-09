@@ -1,7 +1,7 @@
 # TestRedirect
 Программа для тестирования редирект ссылок.
 <br>
-Скачать архив: https://github.com/SomovStudio/TestRedirect/archive/refs/tags/1.1.2.zip
+Скачать архив: https://github.com/SomovStudio/TestRedirect/archive/refs/tags/v2.0.zip
 <br>
 (последнее обновление 09.02.2023 версия 2.0)
 <hr>
