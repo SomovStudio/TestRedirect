@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestRedirect;
 
 namespace QASupport.TestRedirect
 {
@@ -700,6 +701,12 @@ namespace QASupport.TestRedirect
         private void resultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openStep();
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout about = new FormAbout();
+            about.ShowDialog();
         }
     }
 }
