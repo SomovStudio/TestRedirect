@@ -51,7 +51,7 @@ namespace TestRedirect
             try
             {
                 //System.Diagnostics.Process.Start(@"https://opensource.org/licenses/MIT");
-                System.Diagnostics.Process.Start(@"https://github.com/SomovStudio/TestSitemap/blob/master/LICENSE");
+                System.Diagnostics.Process.Start(@"https://github.com/SomovStudio/TestRedirect/blob/main/LICENSE");
             }
             catch (Exception ex)
             {
