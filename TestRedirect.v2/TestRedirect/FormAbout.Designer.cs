@@ -214,21 +214,21 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(223, 14);
+            this.label7.Location = new System.Drawing.Point(221, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(215, 13);
+            this.label7.Size = new System.Drawing.Size(218, 13);
             this.label7.TabIndex = 11;
-            this.label7.Text = "дата последнего обновления: 09.02.2023";
+            this.label7.Text = "Дата последнего обновления: 14.03.2023";
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(154, 14);
+            this.label6.Location = new System.Drawing.Point(149, 14);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(65, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "версия: 2.0";
+            this.label6.Text = "Версия: 2.1";
             // 
             // linkLabel1
             // 
@@ -280,7 +280,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "О программе TestRedirect";
+            this.Text = "О программе TestRedirect | Copyright © 2023 Somov Studio. All Rights Reserved.";
             this.Load += new System.EventHandler(this.FormAbout_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

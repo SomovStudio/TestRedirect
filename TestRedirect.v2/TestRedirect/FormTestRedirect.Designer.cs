@@ -317,7 +317,7 @@
             // 
             this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
@@ -1109,7 +1109,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormTestRedirect";
-            this.Text = "TestRedirect (проверка переадресации)";
+            this.Text = "TestRedirect";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormTestRedirect_FormClosed);
             this.Load += new System.EventHandler(this.FormTestRedirect_Load);
             this.statusStrip1.ResumeLayout(false);

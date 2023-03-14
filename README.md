@@ -6,9 +6,9 @@
 В результате проверки вам будет доступер полный или частичный отчет, отчет исключительно с ошибочными редиректами.
 <br>
 <br>
-Скачать архив: https://github.com/SomovStudio/TestRedirect/archive/refs/tags/v2.0.zip
+Скачать: https://github.com/SomovStudio/TestRedirect/releases/download/2.1/TestRedirect.exe
 <br>
-(последнее обновление 09.02.2023 версия 2.0)
+(последнее обновление 14.03.2023 версия 2.1)
 <hr>
 
 <p align="center">
